@@ -10,6 +10,10 @@ Vue.use(Mint);
 
 // 引入mui
 import './lib/mui/css/mui.min.css'
+import './lib/mui/css/icons-extra.css'
+
+//引用rem布局
+import './assets/js/rem.js'
 
 Vue.config.productionTip = false
 

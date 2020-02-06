@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/home/Home'
-import Tabbar from '@/components/tabbar'
+// import Tabbar from '@/components/tabbar'
 import List from '@/components/list/list'
 import Cart from '@/components/cart/cart'
 import Mine from '@/components/mine/mine'
@@ -11,9 +11,8 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/tabbar',
-      name: 'tabbar',
-      component: Tabbar
+      path: '/',
+      redirect:'home'
     },
     {
       path: '/home',
@@ -35,5 +34,6 @@ export default new Router({
       name: 'mine',
       component: Mine
     }
-  ]
+  ],
+  linkActiveClass:'mui-active'  //默认tabbar高亮类
 })

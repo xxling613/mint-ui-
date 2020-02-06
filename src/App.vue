@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
     <Tabbar></Tabbar>  
-    <router-view/>
+    <!-- <router-view/> -->
   </div>
 </template>
 
@@ -18,6 +18,9 @@ export default {
 
 <style>
 *{padding: 0;margin: 0}
+body,html{
+  font-size: 16px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
