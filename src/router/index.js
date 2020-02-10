@@ -3,10 +3,12 @@ import Router from 'vue-router'
 import Home from '@/components/home/home'
 import HomeList from '@/components/home/homelist'
 import Emlist from '@/components/home/emlist'
+import chatList from '@/components/home/chatList'
 // import Tabbar from '@/components/tabbar'
 import List from '@/components/list/list'
 import Cart from '@/components/cart/cart'
 import Mine from '@/components/mine/mine'
+import Homedet from '@/components/Home/homedet'
 
 Vue.use(Router)
 
@@ -45,6 +47,16 @@ export default new Router({
       path: '/home/emlist',
       name: 'emlist',
       component:Emlist
+    },
+    {
+      path: '/home/chatList',
+      name: 'chatList',
+      component:chatList
+    },
+    {
+      path: '/homedet',
+      name: 'homedet',
+      component:Homedet
     }
   ],
   linkActiveClass:'mui-active'  //默认tabbar高亮类

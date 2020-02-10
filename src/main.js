@@ -15,6 +15,12 @@ import './lib/mui/css/icons-extra.css'
 //引用rem布局
 import './assets/js/rem.js'
 
+//时间格式化
+import moment from 'moment'
+Vue.filter('dateFormat',function(dateStr,pattern = "YYYY-MM-DD HH:mm:ss"){
+  return moment(dateStr).format(pattern)
+})
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

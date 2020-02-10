@@ -27,7 +27,7 @@
                           </router-link>   
                           </li>
 		            <li class="mui-table-view-cell mui-media">
-                     <router-link to="/home/ChatList">
+                     <router-link to="/home/chatList">
 		                    <span class="mui-icon mui-icon-chatbubble"></span>
 		                    <div class="mui-media-body">Chat</div>
                           </router-link>

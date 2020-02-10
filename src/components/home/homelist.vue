@@ -1,7 +1,7 @@
 <template>
   <div>
       <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-		        <li class="mui-table-view-cell">
+		        <li class="mui-table-view-cell" @click="comment">
 		            <div class="mui-table">
 		                <div class="mui-table-cell mui-col-xs-10">
 		                    <h4 class="mui-ellipsis">信息化推进办公室张彦合同付款信息化</h4>
@@ -71,7 +71,13 @@
 
 <script>
 export default {
-   name:"homelist"
+   name:"homelist",
+   methods:{
+	   comment(){
+		//    console.log(111)
+		   this.$router.push({name:'homedet'})
+	   }
+   }
 }
 </script>
 
