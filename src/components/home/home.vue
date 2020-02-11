@@ -33,9 +33,9 @@
                           </router-link>
                           </li>
 		            <li class="mui-table-view-cell mui-media">
-                     <router-link to="/home/locList">
+                     <router-link to="/home/goodlist">
 		                    <span class="mui-icon mui-icon-location"></span>
-		                    <div class="mui-media-body">location</div>
+		                    <div class="mui-media-body">商品列表</div>
                           </router-link>
                           </li>
 		            <li class="mui-table-view-cell mui-media">

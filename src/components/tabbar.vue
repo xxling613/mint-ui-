@@ -1,7 +1,7 @@
 <template>
     <div id="tabbar">
         <!-- 顶部导航 -->
-    <mt-header title="mint-ui项目">
+    <mt-header title="mint-ui项目" fixed>
             <router-link to="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
             </router-link>
@@ -9,7 +9,7 @@
     
     <!-- 中间 -->
     <transition>
-    <router-view></router-view>
+    <router-view class="import"></router-view>
     </transition>
 
     <!-- 底部tabbar -->
@@ -41,8 +41,11 @@ export default {
 </script>
 
 <style>
+  .mint-header.is-fixed {
+    z-index: 999
+  }
   #tabbar .mint-header-title{
-      font-size: 2.2rem
+      font-size: 2.2rem;
   }
   .v-enter{
        opacity: 0;
@@ -86,5 +89,8 @@ export default {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.import{
+    padding: 40px 0 50px;
 }
 </style>

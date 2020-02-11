@@ -29,4 +29,14 @@ body,html{
   color: #2c3e50;
   margin-top: 60px; */
 }
+.preview figure {
+  float: left;
+  width: 30%;
+  height:calc(30vw - 0px);
+  margin: 1.5%;
+}
+
+.preview figure img {
+  width: 100%;
+}
 </style>

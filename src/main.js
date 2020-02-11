@@ -21,6 +21,14 @@ Vue.filter('dateFormat',function(dateStr,pattern = "YYYY-MM-DD HH:mm:ss"){
   return moment(dateStr).format(pattern)
 })
 
+// 引入vue-resource
+import  VueResource  from 'vue-resource'
+Vue.use(VueResource) 
+
+// 引入缩略图插件
+import VuePreview from 'vue-preview';
+Vue.use(VuePreview)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
