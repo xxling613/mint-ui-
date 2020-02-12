@@ -17,9 +17,10 @@ export default {
 </script>
 
 <style>
-*{padding: 0;margin: 0}
+*{padding: 0;margin: 0;}
 body,html{
   font-size: 16px;
+  background: white;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -29,7 +30,7 @@ body,html{
   color: #2c3e50;
   margin-top: 60px; */
 }
-.preview figure {
+/* .preview figure {
   float: left;
   width: 30%;
   height:calc(30vw - 0px);
@@ -38,5 +39,5 @@ body,html{
 
 .preview figure img {
   width: 100%;
-}
+} */
 </style>

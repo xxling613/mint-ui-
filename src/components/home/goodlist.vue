@@ -1,11 +1,9 @@
 <template>
     <div>
       <div class="good-list">
-              <div v-for="item in goodslist" :key="item.id" class="good-item">
-                  <!-- <div class="good-top"> -->
+              <div v-for="item in goodslist" :key="item.id" class="good-item" @click="goodsinfo(item.id)">
                       <img :src="item.img" alt="">
                   <p class="good-title"> {{item.title}} </p>
-                  <!-- </div> -->
                   <div class="price">
                     <span class="current">￥ {{item.current}} </span>
                     <span class="original">{{item.original}}</span>
@@ -15,6 +13,7 @@
                     </div>
                   </div>
               </div>
+              <mt-button type="danger" size="large">加载更多</mt-button>
       </div>
     </div>
 </template>
@@ -31,18 +30,27 @@ export default {
           this.getlist()
    },
    methods:{
+    //    获取商品列表数据
        getlist(){
            this.$http.get("../../../static/data/goods.json").then(res=>{
                if(res.body.status===0){
                    this.goodslist=res.body.message
                }
            })
-       }
+       },
+    //    点击列表进详情
+        goodsinfo(id){
+            // console.log(id)
+            this.$router.push({
+                path:"/home/goodsinfo",
+                query:{id}
+            })
+        }
    }
 }
 </script>
 
-<style>
+<style scoped>
 .good-list{
     display: flex;
     flex-wrap: wrap;
@@ -86,12 +94,8 @@ export default {
       display: flex;
       color: grey;
       font-size:2rem;
-      /* height: 3rem; */
       line-height: 2rem;
       justify-content:space-between;
-      /* position: absolute;
-      bottom: 0;
-      left: 0; */
   }
   .price{
       padding:1rem;

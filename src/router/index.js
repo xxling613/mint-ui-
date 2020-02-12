@@ -6,6 +6,7 @@ import Emlist from '@/components/home/emlist'
 import chatList from '@/components/home/chatList'
 import chatdet from '@/components/home/chatdet'
 import goodlist from '@/components/home/goodlist'
+import goodsinfo from '@/components/home/goodsinfo'
 // import Tabbar from '@/components/tabbar'
 import List from '@/components/list/list'
 import Cart from '@/components/cart/cart'
@@ -69,6 +70,11 @@ export default new Router({
       path: '/home/goodlist',
       name: 'goodlist',
       component:goodlist
+    },
+    {
+      path: '/home/goodsinfo',
+      name: 'goodsinfo',
+      component:goodsinfo
     }
   ],
   linkActiveClass:'mui-active'  //默认tabbar高亮类
