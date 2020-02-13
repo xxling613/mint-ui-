@@ -23,7 +23,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item1" to="/cart">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge"> {{num}} </span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item1" to="/mine">
@@ -36,7 +36,12 @@
 
 <script>
 export default {
-    name:'tabbar'
+    name:'tabbar',
+    data(){
+        return{
+            num:0
+        }
+    }
 }
 </script>
 

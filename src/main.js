@@ -29,11 +29,15 @@ Vue.use(VueResource)
 import VuePreview from 'vue-preview';
 Vue.use(VuePreview)
 
+//引入vuex
+import store from './store/cart'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'

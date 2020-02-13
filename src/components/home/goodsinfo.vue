@@ -25,13 +25,13 @@
             <div class="num">
                 购买数量:
 				<div class="mui-numbox">
-					<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-					<input class="mui-input-numbox" type="number" value="0"/>
-					<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+					<button class="mui-btn mui-btn-numbox-minus" type="button" @click="jian">-</button>
+					<input class="mui-input-numbox" type="number"  :value="$store.state.count" ref="numbox"/>
+					<button class="mui-btn mui-btn-numbox-plus" type="button" @click="add">+</button>
 				</div>
             </div> 
         <mt-button type="primary" size="small">立即购买</mt-button>
-        <mt-button type="danger" size="small" @click="add">加入购物车</mt-button>
+        <mt-button type="danger" size="small" @click="addcart">加入购物车</mt-button>
         </div>
       </div>
       <div class="mui-card">
@@ -39,7 +39,7 @@
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
 						<p>商品货号:</p>
-                        <p>库存情况:</p>
+                        <p>库存情况: {{msg}} 件</p>
                         <p>上架时间:</p>
 					</div>
 				</div>
@@ -60,6 +60,7 @@ export default {
     data(){
         return{
           shows:false,
+          msg:60
         }
     },
     components:{
@@ -67,11 +68,22 @@ export default {
    },
    mounted(){
      mui(".mui-numbox").numbox()
+    //  mui(".mui-numbox").numbox().setOption("max",this.msg)
+     mui(".mui-numbox").numbox().setOption("min",0)
    },
     methods:{ 
+        add(){
+          this.$store.commit("increase")
+        },
+         jian(){
+           this.$store.commit("reduce")
+        },
         // 加入购物车
-       add(){
+       addcart(){
          this.shows=!this.shows;
+         console.log(this.$refs.numbox.value)
+        //  this.num=this.num
+         ;
        },
        beforeEnter(el) {
          el.style.transform="translate(0,0)";
@@ -81,16 +93,21 @@ export default {
         const ballposition=this.$refs.ball.getBoundingClientRect();
         // console.log(ballposition)
         const badgeposition=document.getElementById("badge").getBoundingClientRect();
-        const x =ballposition.left - badgeposition.left;
-        const y =ballposition.top - badgeposition.top;
+        const x = badgeposition.left -ballposition.left;
+        const y =badgeposition.top - ballposition.top;
         el.style.transform=`translate(${x}px,${y}260px)`;
         el.style.transition="all 1s cubic-bezier(.4,-0.3,1,.68)";
         done();
        },
        afterEnter(el) {
         this.shows=!this.shows;
-       }
-    }
+       },
+    },
+    //  watch:{
+        // //    max:function(newVal,oldVal){
+        //        mui(".mui-numbox").numbox().setOption("max",newVal)
+        // //    }
+    //    }
 }
 </script>
 
