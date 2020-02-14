@@ -2,9 +2,9 @@
     <div id="tabbar">
         <!-- 顶部导航 -->
     <mt-header title="mint-ui项目" fixed>
-            <router-link to="/" slot="left">
+            <span slot="left" @click="goback" v-show="flag">
                 <mt-button icon="back">返回</mt-button>
-            </router-link>
+            </span>
     </mt-header>
     
     <!-- 中间 -->
@@ -23,7 +23,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item1" to="/cart">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge"> {{num}} </span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge"> {{$store.getters.gettotle.piece}} </span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item1" to="/mine">
@@ -39,7 +39,28 @@ export default {
     name:'tabbar',
     data(){
         return{
-            num:0
+            flag:true
+        }
+    },
+    created(){
+        if(this.$route.path==='/home'){
+            this.flag=false
+            }else{
+               this.flag=true  
+            }
+    },
+    methods:{
+        goback(){
+            this.$router.go(-1)
+        }
+    },
+    watch:{
+        '$route.path':function(newVal){
+            if(newVal=='/home'){
+             this.flag=false
+            }else{
+               this.flag=true  
+            }
         }
     }
 }

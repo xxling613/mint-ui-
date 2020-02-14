@@ -11,23 +11,23 @@
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
 						 <!-- 轮播图 -->
-                           <swiper></swiper>
+            <swiper></swiper>
 					</div>
 				</div>
 			</div>
       <div class="goods-shop">
-        <div class="goods-title">小米</div>
+        <div class="goods-title">{{newlist.title}} </div>
         <div class="goods-cart">
             <div class="price">
-                市场价：<span class="old">￥2699</span>&nbsp;&nbsp;
-                销售价：<span class="new">￥2199</span>
+                市场价：<span class="old">￥{{newlist.original}}</span>&nbsp;&nbsp;
+                销售价：<span class="new">￥{{newlist.current}}</span>
             </div>
             <div class="num">
                 购买数量:
 				<div class="mui-numbox">
-					<button class="mui-btn mui-btn-numbox-minus" type="button" @click="jian">-</button>
-					<input class="mui-input-numbox" type="number"  :value="$store.state.count" ref="numbox"/>
-					<button class="mui-btn mui-btn-numbox-plus" type="button" @click="add">+</button>
+					<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+					<input class="mui-input-numbox" type="number"  value="1" @change="newcount" ref="number"/>
+					<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
 				</div>
             </div> 
         <mt-button type="primary" size="small">立即购买</mt-button>
@@ -39,14 +39,14 @@
 				<div class="mui-card-content">
 					<div class="mui-card-content-inner">
 						<p>商品货号:</p>
-                        <p>库存情况: {{msg}} 件</p>
+                        <p>库存情况: {{newlist.remain}} 件</p>
                         <p>上架时间:</p>
 					</div>
 				</div>
 				<div class="mui-card-footer">
                     <mt-button type="primary" size="large" plain>图文介绍</mt-button>
                     <mt-button type="danger" size="large" plain>商品评论</mt-button>
-                </div>
+        </div>
 			</div>
       <!-- </div> -->
   </div>
@@ -60,7 +60,9 @@ export default {
     data(){
         return{
           shows:false,
-          msg:60
+          count:1,
+          list:[],
+          newlist:{},
         }
     },
     components:{
@@ -68,23 +70,50 @@ export default {
    },
    mounted(){
      mui(".mui-numbox").numbox()
-    //  mui(".mui-numbox").numbox().setOption("max",this.msg)
      mui(".mui-numbox").numbox().setOption("min",0)
    },
+   created(){
+     this.getdet()   
+   },
+   updated(){
+    mui(".mui-numbox").numbox().setOption("max",this.newlist.remain)
+   },
     methods:{ 
-        add(){
-          this.$store.commit("increase")
-        },
-         jian(){
-           this.$store.commit("reduce")
+      //  获取input里面的数量
+       newcount(){
+        this.count=parseInt(this.$refs.number.value)
+       },
+      //  获取详情数据
+        getdet(){
+          //  console.log(postid)
+           this.$http.get("../../../static/data/goods.json").then(res=>{
+            //  console.log(res)
+             if(res.body.status==0){
+               this.list=res.body.message
+             }
+               var postid=this.$route.query.id;
+               this.newlist=this.list.find((item)=>{
+                return item.id==postid
+              })  
+              // console.log(this.newlist)
+           })
         },
         // 加入购物车
        addcart(){
          this.shows=!this.shows;
-         console.log(this.$refs.numbox.value)
-        //  this.num=this.num
+         var goodsinfo = {
+           id:this.newlist.id,
+           title:this.newlist.title,
+           count:this.count,
+           prcie:this.newlist.current,
+           remain:this.newlist.remain,
+           selected:true
+         }
+        //  console.log(goodsinfo)
+         this.$store.commit("addtocart",goodsinfo) 
          ;
        },
+      //  小球加入购物车动画
        beforeEnter(el) {
          el.style.transform="translate(0,0)";
        },
@@ -103,11 +132,6 @@ export default {
         this.shows=!this.shows;
        },
     },
-    //  watch:{
-        // //    max:function(newVal,oldVal){
-        //        mui(".mui-numbox").numbox().setOption("max",newVal)
-        // //    }
-    //    }
 }
 </script>
 
